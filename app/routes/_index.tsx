@@ -1,7 +1,8 @@
-import { Box, Radio, Stack, Text, Title } from "@mantine/core";
+import { Box, Group, Radio, Stack, Text, Title } from "@mantine/core";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";
 import type { MetaFunction } from "@remix-run/cloudflare";
+import { IconCheck, IconUpload } from "@tabler/icons-react";
 import { z } from "zod";
 import { megabytes } from "~/utils/size";
 
@@ -30,7 +31,7 @@ const schema = z.object({
 });
 
 export default function Index() {
-  const form = useForm()
+  const form = useForm();
 
   return (
     <Box style={{ paddingInline: "1rem", paddingBlockStart: "4rem" }}>
@@ -49,10 +50,18 @@ export default function Index() {
         >
           <Box h={144}>
             <Dropzone.Idle>
-              <Text>Drop it like its hot</Text>
+              <Stack justify="center" align="center" h="100%">
+                <IconUpload width={64} height={64} />
+                <Text>Drop it like its hot</Text>
+              </Stack>
             </Dropzone.Idle>
 
-            <Dropzone.Accept>Yep that seems good</Dropzone.Accept>
+            <Dropzone.Accept>
+              <Stack justify="center" align="center" h="100%">
+                <IconCheck width={64} height={64} />
+                <Text>Drop it like its hot</Text>
+              </Stack>
+            </Dropzone.Accept>
 
             <Dropzone.Reject>Nah man, check the file type</Dropzone.Reject>
           </Box>
